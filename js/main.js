@@ -12,7 +12,7 @@
                 $(this).removeClass('has-val');
             }
         })
-    })
+    });
 
 
     /*==================================================================
@@ -21,7 +21,6 @@
 
     $('.validate-form').on('submit', function () {
         var check = true;
-
         for (var i = 0; i < input.length; i++) {
             if (validate(input[i]) == false) {
                 showValidate(input[i]);
@@ -41,6 +40,9 @@
 
     function validate(input) {
         if ($(input).val().trim() == '') {
+            return false;
+        }
+        if($(input).val().trim().match(/^\+([0-9]+)-([0-9]+)/) == null) {
             return false;
         }
     }
