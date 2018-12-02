@@ -28,6 +28,20 @@
             }
         }
 
+        if (check === true) {
+            var form = $("#login-form");
+            $.ajax({
+                method: "POST",
+                url: "join.do",
+                data: form.serialize(),
+                success: function (ajaxResult) {
+                    $("#join").text("Thank you");
+                },
+                error: function (request, status, responseText) {
+                    alert("fail to join lunch, contact developer")
+                }
+            })
+        }
         return check;
     });
 
@@ -42,7 +56,7 @@
         if ($(input).val().trim() == '') {
             return false;
         }
-        if($(input).val().trim().match(/^\+([0-9]+)-([0-9]+)/) == null) {
+        if ($(input).val().trim().match(/^\+([0-9]+)-([0-9]+)/) == null) {
             return false;
         }
     }
@@ -58,27 +72,4 @@
 
         $(thisAlert).removeClass('alert-validate');
     }
-
-    /*==================================================================
-    [ Send phone ]*/
-    $(document).ready(function () {
-        $("#join").click(function () {
-            var form = $("#login-form");
-            $.ajax({
-                method: "POST",
-                url: "join.do",
-                data: form.serialize(),
-                success: function (ajaxResult) {
-                    $("#join").text("Thank you");
-                    $("#join").disable
-                    $("#join").addClass("")
-                },
-                error: function (request, status, responseText) {
-                    alert("fail")
-                }
-            })
-        });
-    });
-
-
 })(jQuery);
